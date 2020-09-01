@@ -3,6 +3,7 @@
 # define PHILO_ONE_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
@@ -16,8 +17,6 @@
 # define ERROR_SLEEP -8
 # define ERROR_TIMEOFDAY -9
 
-int		throw_error(int error);
-void	ft_usleep(unsigned int n);
 int		logs(struct timeval *st, struct timeval *tv, size_t number, char *msg);
 
 typedef struct		s_parameters
@@ -51,7 +50,6 @@ typedef struct		s_philosopher
 
 typedef struct		s_philo_one
 {
-	char			*name;
 	t_parameters	*parameters;
 	t_philosopher	*philosophers;
 }					t_philo_one;
@@ -59,14 +57,19 @@ typedef struct		s_philo_one
 void				unmake_pairs(t_philo_one *phi);
 int					launch_philosophers(t_philo_one *phi);
 int					setup_philosopher(t_philo_one *phi, int i,
-t_philosopher **ptr, t_fork **r_fork);
+t_philosopher 		**ptr, t_fork **r_fork);
 int					init_philosophers(t_philo_one *phi);
-void	*alive(void *ptr);
+void				*alive(void *ptr);
 t_parameters		*copy_parameters(t_parameters *parameters);
 void				fill_msg(char *msg, char **ptr);
 void				fill_nbr(size_t nbr, char **timestamp);
 size_t				ft_strlen(const char *s);
-int					ft_atos(char *str, size_t *nb);
+int					ft_atoi(char *str);
+int					throw_error(int error);
+void				ft_usleep(unsigned int n);
+void				msg_error(char *msg);
+int					clean_all(t_philo_one *philos);
+void				clean_philosopher(t_philosopher *philos);
 
 
 #endif

@@ -1,19 +1,6 @@
 
 #include "philo_one.h"
 
-/*
-** function {copy_parameters}
-**
-** parameters:
-** (t_parameters *){parameters} - parameters to copy
-**
-** return (t_parameters *) : a pointer to a copy of {parameters}
-**
-** description:
-** malloc, and copy all parameters of the (t_parameters *) and return a pointer
-** to it.
-*/
-
 t_parameters	*copy_parameters(t_parameters *parameters)
 {
 	t_parameters	*copy;
@@ -36,37 +23,12 @@ parameters->number_of_time_each_philosophers_must_eat;
 	return (copy);
 }
 
-/*
-** function: {fill_msg}
-**
-** parameters:
-** (char *){msg} - msg to add,
-** (char **){ptr} - pointer to the char * to fill
-**
-** return (void)
-**
-** description:
-** Put the {msg} into {ptr}
-*/
 
 void			fill_msg(char *msg, char **ptr)
 {
 	while (*msg)
 		*(*ptr)++ = *msg++;
 }
-
-/*
-** function: {fill_nbr}
-**
-** parameters:
-** (size_t){nbr} - number to add,
-** (char **){ptr} - pointer to the char * to fill
-**
-** return (void)
-**
-** description:
-** Convert the number {nbr} into a (char *) and fill it into {ptr}
-*/
 
 void			fill_nbr(size_t nbr, char **ptr)
 {
@@ -85,18 +47,6 @@ void			fill_nbr(size_t nbr, char **ptr)
 	}
 }
 
-/*
-** function: {ft_strlen}
-**
-** parameters:
-** (const char *){s} - String to count the length
-**
-** return (size_t): length of the string
-**
-** description:
-** Calculate the len of string s
-*/
-
 size_t			ft_strlen(const char *s)
 {
 	size_t i;
@@ -107,27 +57,16 @@ size_t			ft_strlen(const char *s)
 	return (i);
 }
 
-/*
-** function {ft_atos}
-**
-** parameters:
-** (char *){str} - the string to parse,
-** (size_t *){nb} - a pointer to the size_t to fill
-**
-** return (int): return -1 if str is empty or str didn't finished by a number
-**
-** description:
-** transform ascii to size_t and put it in {nb}
-*/
-
-int				ft_atos(char *str, size_t *nb)
+int				ft_atoi(char *str)
 {
+	int		nb;
+
 	if (*str == '\0')
 		return (-1);
-	*nb = 0;
+	nb = 0;
 	while (*str && *str >= '0' && *str <= '9')
-		*nb = 10 * *nb + (*str++ - '0');
+		nb = 10 * nb + (*str++ - '0');
 	if (*str != '\0')
 		return (-1);
-	return (0);
+	return (nb);
 }
