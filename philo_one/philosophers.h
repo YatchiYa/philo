@@ -35,7 +35,7 @@ typedef struct		s_philosopher
 {
 	size_t			position;
 	int				eat_count;
-	t_parameters	*parameters;
+	t_paramettre	*parameters;
 	size_t			limit;
 	size_t			last_eat;
 	t_fork			*left_fork;
@@ -48,8 +48,8 @@ typedef struct		s_philosopher
 
 typedef struct		s_philo_one
 {
-	t_parameters	*parameters;
-	t_philosopher	*philosophers;
+	t_paramettre	*parameters;
+	t_philosopher	*philos;
 	pthread_mutex_t	somebody_dead_m;
 	pthread_mutex_t	write_m;
 	size_t			start;
@@ -59,24 +59,15 @@ typedef struct		s_philo_one
 
 int					ft_strlen(char const *str);
 
-int					ft_atoi(char const *str);
+int					ft_atoi(char *str);
 
 void				ft_putnbr_fd(size_t n, int fd);
 
 size_t				get_time(void);
 
-int					clear_state(t_state *state);
+int					clear_state(t_philo_one *state);
 
 int					exit_error(char const *str);
 
-int					init(t_state *state, int argc, char const **argv);
-
-void				take_forks(t_philo *philo);
-
-void				clean_forks(t_philo *philo);
-
-void				eat(t_philo *philo);
-
-void				display_message(t_philo *philo, int type);
 
 #endif

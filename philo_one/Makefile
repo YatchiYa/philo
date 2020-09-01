@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			= main.c utils.c exit.c messages.c init.c forks.c eat.c
+SRCS			= main.c utils.c exit.c 
 OBJS			= $(SRCS:.c=.o)
 
 CC				= gcc
