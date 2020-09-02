@@ -1,21 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ncolomer <ncolomer@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/10 12:40:45 by ncolomer          #+#    #+#             */
-/*   Updated: 2019/12/12 23:24:10 by ncolomer         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
-int
-	ft_strlen(char const *str)
+void				ft_putstr(char *str)
 {
-	int	i;
+	int		i;
+
+	i = -1;
+	while (str[++i])
+		write(1, &str[i], 1);
+}
+
+int					ft_strlen(char *str)
+{
+	int		i;
 
 	i = 0;
 	while (str[i])
@@ -23,17 +20,52 @@ int
 	return (i);
 }
 
-int				ft_atoi(char *str)
+int					ft_atoi(char *str)
 {
-	int		nb;
+	char	*s;
+	int		sign;
+	int		n;
 
-	if (*str == '\0')
-		return (-1);
-	nb = 0;
-	while (*str && *str >= '0' && *str <= '9')
-		nb = 10 * nb + (*str++ - '0');
-	if (*str != '\0')
-		return (-1);
-	return (nb);
+	s = (char*)str;
+	sign = 1;
+	n = 0;
+	while (*s == ' ' || *s == '\t'
+			|| *s == '\n' || *s == '\r' || *s == '\v' || *s == '\f')
+		s++;
+	if (*s == '+' || *s == '-')
+	{
+		if (*s == '-')
+			sign = -1;
+		s++;
+	}
+	while (*s >= '0' && *s <= '9')
+		n = n * 10 + (*s++ - '0');
+	return (sign * n);
 }
 
+size_t				get_time(void)
+{
+	static struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * (size_t)1000) + (tv.tv_usec / 1000));
+}
+
+void				ft_putnbr_fd(size_t n)
+{
+	char	str[13];
+	int		length;
+
+	if (n == 0)
+		str[0] = '0';
+	length = 0;
+	while (n != 0)
+	{
+		str[length++] = '0' + (n % 10);
+		n = (n / 10);
+	}
+	if (length > 0)
+		length--;
+	while (length >= 0)
+		write(1, &str[length--], 1);
+}

@@ -1,27 +1,29 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   messages.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ncolomer <ncolomer@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/10 18:31:46 by ncolomer          #+#    #+#             */
-/*   Updated: 2019/12/13 14:08:39 by ncolomer         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
+
+int			exit_error(int ret)
+{
+	if (ret == -1)
+		ft_putstr("philo : error arguments\n");
+	if (ret == -2)
+		ft_putstr("philo : error malloc\n");
+	if (ret == -3)
+		ft_putstr("philo : too many or too few arguments\n");
+	if (ret == -4)
+		ft_putstr("philo : error malloc philosophers\n");
+	return (0);
+}
 
 char		*get_message(int type)
 {
 	if (type == TYPE_EAT)
-		return (" is eating\n");
+		return (" \033[31m is eating \033[0m\n");
 	else if (type == TYPE_SLEEP)
-		return (" is sleeping\n");
+		return (" \033[32m is sleeping \033[0m\n");
 	else if (type == TYPE_FORK)
-		return (" has taken a fork\n");
+		return (" \033[34m has taken a fork \033[0m\n");
 	else if (type == TYPE_THINK)
-		return (" is thinking\n");
+		return (" \033[33m is thinking \033[0m\n");
 	else if (type == TYPE_OVER)
 		return ("must eat count reached\n");
 	return (" died\n");
@@ -31,16 +33,18 @@ void		display_message(t_philo *philo, int type)
 {
 	static int	done = 0;
 
-	pthread_mutex_lock(&philo->state->write_m);
+	pthread_mutex_lock(&philo->state->mu->write_m);
 	if (!done)
 	{
-		ft_putnbr_fd(get_time() - philo->state->start, 1);
+		ft_putnbr_fd(get_time() - philo->state->mu->start);
+		write(1, "m", 1);
+		write(1, "s", 1);
 		write(1, "\t", 1);
 		if (type != TYPE_OVER)
-			ft_putnbr_fd(philo->position + 1, 1);
+			ft_putnbr_fd(philo->position + 1);
 		if (type >= TYPE_DIED)
 			done = 1;
 		write(1, get_message(type), ft_strlen(get_message(type)));
 	}
-	pthread_mutex_unlock(&philo->state->write_m);
+	pthread_mutex_unlock(&philo->state->mu->write_m);
 }
