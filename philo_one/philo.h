@@ -52,11 +52,9 @@ typedef struct		s_philo
 	size_t	        limit;
 	int				is_eating;
 	size_t			last_eat;
-	pthread_t		*thread;
 	int				left_fork;
 	int				right_fork;
     t_paramettre	*par;
-	//t_mutexes		*mu;
 	struct s_state	*state;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	eat_m;
