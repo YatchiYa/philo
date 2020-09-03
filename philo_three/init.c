@@ -6,6 +6,7 @@ int			init_param(t_state *state, int argc, char **argv)
 	if (!(state->par = malloc(sizeof(t_paramettre))))
 		return (WRONG_MALLOC);
 	state->par->time_start = NULL;
+	state->par->cur_eat_count = 0;
 	if (argc < 5 || argc > 6)
 		return (TOO_MANY_ARGS);
 	if ((state->par->amount = ft_atoi(argv[1])) < 2)

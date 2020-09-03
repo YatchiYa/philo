@@ -5,17 +5,15 @@ void			*monitor_count(void *state_v)
 {
 	t_state *state;
 	int		i;
-	int		total;
 
-	total = 0;
 	state = (t_state*)state_v;
-	while (total < state->par->must_eat_count)
+	while (state->par->cur_eat_count < state->par->must_eat_count)
 	{
 		i = 0;
 		while (i < state->par->amount)
 			if (sem_wait(state->philo[i++].eat_m))
 				return ((void*)0);
-		total++;
+		state->par->cur_eat_count++;
 	}
 	if (display_message(&state->philo[0], TYPE_OVER))
 		return ((void*)0);

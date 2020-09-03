@@ -36,6 +36,7 @@ typedef struct		s_paramettre
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	int				must_eat_count;
+	int				cur_eat_count;
     struct timeval	*time_start;
 }					t_paramettre;
 
