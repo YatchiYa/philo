@@ -18,6 +18,9 @@ int			main(int argc, char **argv)
 	if ((ret = start_threads(&state)))
 		return (clear_semaphores(&state) && exit_error(ret));
 	sem_wait(state.mu->somebody_dead_m);
+	ret = 0;
+	while (ret < state.par->amount)
+		kill(state.philo[ret++].pid, SIGKILL);
 	clear_semaphores(&state);
 	return (0);
 }

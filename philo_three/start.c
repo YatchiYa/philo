@@ -91,9 +91,14 @@ int				start_threads(t_state *state)
 	while (i < state->par->amount)
 	{
 		philos = (void*)(&state->philo[i]);
-		if (pthread_create(&tid, NULL, &routine, philos) != 0)
+		state->philo[i].pid = fork();
+		if (state->philo[i].pid < 0)
 			return (1);
-		pthread_detach(tid);
+		else if (state->philo[i].pid == 0)
+		{
+			routine(&state->philo[i]);
+			exit(0);
+		}
 		usleep(100);
 		i++;
 	}

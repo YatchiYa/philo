@@ -5,7 +5,7 @@ CXX				= clang
 RM				= rm -f
 CXXFLAGS		= -Wall -Wextra -Werror -I. -lpthread
 
-NAME			= philo_two
+NAME			= philo_three
 
 all:			$(NAME)
 

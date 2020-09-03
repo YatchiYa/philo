@@ -11,6 +11,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
+# include <signal.h>
 
 # define TYPE_EAT 			0
 # define TYPE_SLEEP 		1
@@ -25,6 +26,7 @@
 # define SEMAPHORE_FORK		"pSemaphoreFork"
 # define SEMAPHORE_WRITE	"pSemaphoreWrite"
 # define SEMAPHORE_DEAD		"pSemaphoreDead"
+# define SEMAPHORE_DEADW	"pSemaphoreDeadWrite"
 # define SEMAPHORE_PHILO	"pSemaphorePhilo"
 # define SEMAPHORE_PHILOEAT	"pSemaphorePhiloEat"
 struct s_state;	
@@ -53,10 +55,12 @@ typedef struct		s_sem
 	sem_t			*forks_m;
 	sem_t			*write_m;
 	sem_t			*somebody_dead_m;
+	sem_t			*dead_write_m;
 }					t_sem;
 
 typedef struct		s_philo
 {
+	pid_t			pid;
 	int				position;
 	int				eat_count;
 	size_t	        limit;

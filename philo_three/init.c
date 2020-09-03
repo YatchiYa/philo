@@ -59,7 +59,8 @@ int			init_semaphores(t_state *state)
 		return (WRONG_MALLOC_PHILO);
 	if ((state->mu->forks_m = ft_sem_open(SEMAPHORE_FORK, state->par->amount)) < 0
 		|| (state->mu->write_m = ft_sem_open(SEMAPHORE_WRITE, 1)) < 0
-		|| (state->mu->somebody_dead_m = ft_sem_open(SEMAPHORE_DEAD, 0)) < 0)
+		|| (state->mu->somebody_dead_m = ft_sem_open(SEMAPHORE_DEAD, 0)) < 0
+		|| (state->mu->dead_write_m = ft_sem_open(SEMAPHORE_DEADW, 1)) < 0)
 		return (1);
 	return (0);
 }
