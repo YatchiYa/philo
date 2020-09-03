@@ -8,16 +8,17 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define TYPE_EAT 	0
-# define TYPE_SLEEP 1
-# define TYPE_FORK 	2
-# define TYPE_THINK	3
-# define TYPE_DIED 	4
-# define TYPE_OVER 	5
-# define WRONG_ARG -1
-# define WRONG_MALLOC -2
-# define TOO_MANY_ARGS -3
+# define TYPE_EAT 			0
+# define TYPE_SLEEP 		1
+# define TYPE_FORK 			2
+# define TYPE_THINK			3
+# define TYPE_DIED 			4
+# define TYPE_OVER 			5
+# define WRONG_ARG 			-1
+# define WRONG_MALLOC 		-2
+# define TOO_MANY_ARGS 		-3
 # define WRONG_MALLOC_PHILO -4
+# define WRONG_ARG_EAT 		-5
 
 struct s_state;	
 

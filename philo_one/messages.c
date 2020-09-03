@@ -11,6 +11,8 @@ int			exit_error(int ret)
 		ft_putstr("philo : too many or too few arguments\n");
 	if (ret == -4)
 		ft_putstr("philo : error malloc philosophers\n");
+	if (ret == -5)
+		ft_putstr("philo : error eat count < please specify more than 0\n");
 	return (0);
 }
 

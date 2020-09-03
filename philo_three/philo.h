@@ -23,12 +23,13 @@
 # define WRONG_MALLOC 		-2
 # define TOO_MANY_ARGS 		-3
 # define WRONG_MALLOC_PHILO -4
-# define SEMAPHORE_FORK		"pSemaphoreFork"
-# define SEMAPHORE_WRITE	"pSemaphoreWrite"
-# define SEMAPHORE_DEAD		"pSemaphoreDead"
-# define SEMAPHORE_DEADW	"pSemaphoreDeadWrite"
-# define SEMAPHORE_PHILO	"pSemaphorePhilo"
-# define SEMAPHORE_PHILOEAT	"pSemaphorePhiloEat"
+# define WRONG_ARG_EAT 		-5
+# define SEMAPHORE_FORK		"SemaphoreFork"
+# define SEMAPHORE_WRITE	"SemaphoreWrite"
+# define SEMAPHORE_DEAD		"SemaphoreDead"
+# define SEMAPHORE_DEADW	"SemaphoreDeadWrite"
+# define SEMAPHORE_PHILO	"SemaphorePhilo"
+# define SEMAPHORE_PHILOEAT	"SemaphorePhiloEat"
 struct s_state;	
 
 typedef struct		s_paramettre
